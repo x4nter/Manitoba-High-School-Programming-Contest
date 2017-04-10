@@ -7,7 +7,7 @@ bool path(vector<vector<int>> loc, int p, int c) {
 	c++;
 	for (int k = 0; k < loc[p].size(); k++) {
 		int q = loc[p][k];
-		if (k == 0)
+		if (!q)
 			return true;
 		else if (c > loc.size())
 			return false;
