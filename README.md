@@ -1,1 +1,1 @@
-# UoM-2016-prob-6
+U-of-M-High-School-Contest
