@@ -36,4 +36,5 @@ int main() {
 		cout << "Case #" << i + 1 << ": ";
 		printCoins(change);
 	}
+	return 0;
 }
