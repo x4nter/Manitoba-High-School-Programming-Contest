@@ -1,51 +1,43 @@
-//note: this is not a completely working solution. There still is a problem for a particular case.
-
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-bool path(vector<vector<int>> loc, int p, int c) {
-	c++;
-	for (int k = 0; k < loc[p].size(); k++) {
-		int q = loc[p][k];
-		if (!q)
-			return true;
-		else if (c > loc.size())
-			return false;
-		return path(loc, q, c);
+vector<vector<bool>> matrix;
+
+bool wayHome(int start_node) {
+	vector<int> queue;
+	vector<bool> visited(matrix.size());
+	queue.insert(queue.begin(), start_node);
+	while (!queue.empty()) {
+		int curr_node = queue.back();
+		queue.pop_back();
+		visited[curr_node] = true;
+		for (int i = 0; i < matrix[curr_node].size(); i++) {
+			if (matrix[curr_node][i] && !visited[i])
+				queue.insert(queue.begin(), i);
+		}
 	}
+	return visited[0];
 }
 
-int main(){
-	int nLoc, n, nCalls = 0;
-	bool wayHome = false;
-	cin >> nLoc;
-	cin.ignore(1, ' ');
-	vector<vector<int>> loc(nLoc);
-	cin >> n;
-	for (int i = 0; i < n; i++) {
-		int a, b;
-		cin >> a;
-		cin.ignore(1, ' ');
-		cin >> b;
-		loc[a].push_back(b);
+int main() {
+	int nLocations, lifts;
+	cin >> nLocations >> lifts;
+	matrix.resize(nLocations);
+	for (int i = 0; i < matrix.size(); i++)
+		matrix[i].resize(nLocations);
+	for (int i = 0; i < lifts; i++) {
+		int start, end;
+		cin >> start >> end;
+		matrix[start][end] = true;
 	}
-	for (int i = 1; i < loc.size(); i++) {
-		int p;
-		for (int j = 0; j < loc[i].size(); j++) {
-			p = loc[i][j];
-			if (!p) {
-				wayHome = true;
-				break;
-			}
-			wayHome = path(loc, p, nCalls);
+	for (int i = 1; i < nLocations; i++) {
+		if (!wayHome(i)) {
+			cout << "stranded" << endl;
+			return 0;
 		}
-		if (!wayHome)
-			break;
 	}
-	if (wayHome)
-		cout << "home safe\n";
-	else cout << "stranded\n";
-    return 0;
+	cout << "home safe" << endl;
+	return 0;
 }
