@@ -22,22 +22,30 @@ bool wayHome(int start_node) {
 }
 
 int main() {
-	int nLocations, lifts;
-	cin >> nLocations >> lifts;
-	matrix.resize(nLocations);
-	for (int i = 0; i < matrix.size(); i++)
-		matrix[i].resize(nLocations);
-	for (int i = 0; i < lifts; i++) {
-		int start, end;
-		cin >> start >> end;
-		matrix[start][end] = true;
-	}
-	for (int i = 1; i < nLocations; i++) {
-		if (!wayHome(i)) {
-			cout << "stranded" << endl;
-			return 0;
+	int resorts;
+	cin >> resorts;
+	for(int i = 0; i < resorts; i++){
+		matrix.clear();
+		int nLocations, lifts;
+		bool way = true;
+		cin >> nLocations >> lifts;
+		matrix.resize(nLocations);
+		for (int j = 0; j < matrix.size(); j++)
+			matrix[j].resize(nLocations);
+		for (int j = 0; j < lifts; j++) {
+			int start, end;
+			cin >> start >> end;
+			matrix[start][end] = true;
 		}
+		for (int j = 1; j < nLocations; j++) {
+			if (!wayHome(j)) {
+				way = false;
+				break;
+			}
+		}
+		cout << "CASE " << i + 1 << ": ";
+		if(way) cout << "home safe" << endl;
+		else cout << "stranded" << endl;
 	}
-	cout << "home safe" << endl;
 	return 0;
 }
