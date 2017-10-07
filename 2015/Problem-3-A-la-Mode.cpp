@@ -1,3 +1,5 @@
+//Note: This program runs infinitely since there is no way
+//the program input tells how many lines there are.
 #include <iostream>
 #include <string>
 #include <sstream>
