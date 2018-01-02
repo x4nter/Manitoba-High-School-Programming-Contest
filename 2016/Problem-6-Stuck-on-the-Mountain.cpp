@@ -1,3 +1,4 @@
+//This solution uses the idea of graphs and performing Breadth First Search(BFS) on a graph
 #include <iostream>
 #include <vector>
 
