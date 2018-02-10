@@ -1,4 +1,4 @@
-//This solution uses the idea of graphs and performing Breadth First Search(BFS) on a graph
+//This solution uses the concept of graphs and performing Breadth First Search(BFS) on a graph
 #include <iostream>
 #include <vector>
 
