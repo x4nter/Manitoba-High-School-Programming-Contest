@@ -17,7 +17,7 @@ int main() {
 		vector<string> words;
 		for (int i = 0; i < n; i++) {
 			string s;
-			cin >> s;
+			getline(cin, s);
 			words.push_back(s);
 		}
 		int games = 0;
